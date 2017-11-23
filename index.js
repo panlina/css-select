@@ -16,6 +16,8 @@ function getSelectorFunc(searchFunc){
 		options = options || {}
 		options.adapter = options.adapter || DomUtils;
 		var compile = adapterCompile(options.adapter);
+		for (var i in CSSselect.$pseudos)
+			compile.Pseudos.pseudos[i] = CSSselect.$pseudos[i](options.adapter);
 
 		if(typeof query !== "function") query = compile.compileUnsafe(query, options, elems);
 		if(query.shouldTestNextSiblings) elems = appendNextSiblings((options && options.context) || elems, options.adapter);
