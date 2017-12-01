@@ -1,6 +1,6 @@
 # css-select [![NPM version](http://img.shields.io/npm/v/css-select.svg)](https://npmjs.org/package/css-select) [![Build Status](https://travis-ci.org/fb55/css-select.svg?branch=master)](http://travis-ci.org/fb55/css-select) [![Downloads](https://img.shields.io/npm/dm/css-select.svg)](https://npmjs.org/package/css-select) [![Coverage](https://coveralls.io/repos/fb55/css-select/badge.svg?branch=master)](https://coveralls.io/r/fb55/css-select)
 
-a CSS selector compiler/engine
+a CSS selector compiler/engine, with extensible selectors
 
 ## What?
 
@@ -15,6 +15,7 @@ __Features:__
 - Partial implementation of jQuery/Sizzle extensions
 - Very high test coverage
 - Pretty good performance
+- Extensible selectors
 
 ## Why?
 
@@ -161,6 +162,28 @@ both of those. You may also want to look at
   */
   equals: ( a:Node, b:Node ) => Boolean
 }
+```
+
+### Custom Selectors
+
+#### pseudo selectors
+
+```js
+CSSselect.$pseudos[name] = function (adapter) {
+	return function (elem) {
+		..
+	}
+};
+```
+
+#### attribute operators
+
+```js
+CSSselect.$attributes[name] = function (adapter) {
+	return function (next, data) {
+		..
+	}
+};
 ```
 
 ## Supported selectors
